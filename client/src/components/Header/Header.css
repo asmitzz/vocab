@@ -1,0 +1,41 @@
+.header__container{
+  position:sticky;
+  width:100%;
+  top:0;
+  left:0;
+  background:var(--primary);
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    padding:1rem;
+    color:var(--secondary);
+}
+  
+.header__btn{
+    background:transparent;
+    color:var(--secondary);
+    font-size:1.2rem;
+    border:none;
+    font-weight:bold;
+}
+
+.WordList__heading{
+  padding:0.8rem;
+  font-weight:700;
+  border-top-left-radius:15px;
+  border-top-right-radius:15px;
+  background:var(--secondary);
+  border-bottom:1px solid var(--tertiary);
+}
+
+.search__box{
+   width:90%;
+   padding:0.3rem;
+   color:var(--secondary);
+   background:var(--primary);
+   border:none;
+   outline:none;
+   font-size:1.2rem;
+}
