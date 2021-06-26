@@ -4,3 +4,20 @@
     justify-content:center;
     background:var(--primary);
 }
+
+.plus__btn{
+    position:fixed;
+    bottom:1rem;
+    right:1rem;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:50px;
+    width:50px;
+    border-radius:50%;
+    background:var(--primary);
+    color:var(--secondary);
+    border:none;
+    font-size:1.2rem;
+    cursor:pointer;
+}

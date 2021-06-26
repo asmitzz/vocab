@@ -1,4 +1,6 @@
-const Word = () => {
+const Word = ({word}:any) => {
+    console.log(word);
+    
     return (
         <li className="word">
               <h3 className="word__name">beautiful</h3>

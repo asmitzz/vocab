@@ -1,0 +1,44 @@
+.add__To__dictionary{
+    display:flex;
+    flex-direction:column;
+    padding:1rem;
+    background:var(--secondary);
+}
+
+.add__To__dictionary .form__group{
+    display:flex;
+    flex-direction:column;
+    margin:2rem 0;
+}
+
+.add__To__dictionary .form__label{
+    font-size:0.7rem;
+    font-weight:700;
+    color:var(--primary);
+}
+
+.add__To__dictionary .form__control{
+    border:none;
+    padding:0.5rem 0;
+    border-bottom:1px solid var(--primary);
+    outline:none;
+}
+
+.add__To__dictionary .form__control:focus{
+    border-bottom:2px solid var(--primary);
+}
+
+.add__To__dictionary .btn__container{
+    display:flex;
+    justify-content:flex-end;
+}
+
+.add__To__dictionary .btn{
+    border:none;
+    background:none;
+    color:var(--primary);
+    font-size:0.7rem;
+    font-weight:700;
+    margin-left:1rem;
+    cursor:pointer;
+}
