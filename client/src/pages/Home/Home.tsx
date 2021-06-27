@@ -13,7 +13,7 @@ const Home = () => {
     return (
         <div className="Home">
             <Header search={search} setSearch={setSearch} input={input} setInput={setInput} />
-            <WordList search={search} setSearch={setSearch} input={input} />
+            <WordList search={search} input={input} />
 
             <button className="plus__btn" onClick={() => setBackdrop(true)}>
                <i className="fa fa-plus"></i>
@@ -22,6 +22,7 @@ const Home = () => {
             <Backdrop show={backdrop}>
                 <AddToDictionary setBackdrop={setBackdrop}/>
             </Backdrop>
+            
         </div>
     );
 };

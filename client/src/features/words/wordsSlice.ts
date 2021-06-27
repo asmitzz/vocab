@@ -36,7 +36,7 @@ const wordsSlice = createSlice({
         })
         builder.addCase(addWord.fulfilled,(state,action) => {
             const { word } = action.payload;
-            state.words.unshift(word);
+            state.words.push(word);
         })
     }
 })

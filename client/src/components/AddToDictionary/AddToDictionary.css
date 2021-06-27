@@ -42,3 +42,11 @@
     margin-left:1rem;
     cursor:pointer;
 }
+
+.add__To__dictionary .btn:disabled{
+    opacity:0.5;
+}
+
+.add__To__dictionary__heading{
+    color:var(--primary);
+}

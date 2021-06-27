@@ -1,0 +1,29 @@
+.invalid__feedback,.valid__feedback{
+    padding:1rem;
+    animation:toast 0.3s 1 linear;
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    font-size:0.9rem;
+    font-weight:500;
+}
+
+.invalid__feedback{
+    color:var(--secondary);
+    background:var(--danger);
+}
+
+.valid__feedback{
+    color:var(--secondary);
+    background:var(--primary);
+}
+
+@keyframes toast{
+    from{
+        transform:translateY(100%);
+    }
+    to{
+        transform:translateX(0);
+    }
+}

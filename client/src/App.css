@@ -10,5 +10,6 @@
 :root{
   --primary:#632448;
   --secondary:#FFFFFF;
-  --tertiary:#ccc;
+  --tertiary:rgb(141, 139, 139);
+  --danger:red;
 }

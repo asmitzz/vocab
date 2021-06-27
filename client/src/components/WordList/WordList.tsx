@@ -1,16 +1,17 @@
-import { Dispatch,SetStateAction, useEffect } from "react";
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { fetchWords } from "../../features/words/wordsSlice";
+import { Error } from "../../utils/Toast/Toast";
 import Word from "./components/Word";
+import Spinner from "../../utils/Spinner/Spinner";
 import "./WordList.css";
 
 type WordListProps = {
     search:boolean;
-    setSearch:Dispatch<SetStateAction<boolean>>;
     input:string;
 }
 
-const WordList = ({ search,setSearch,input }:WordListProps) => {
+const WordList = ({ search,input }:WordListProps) => {
     const { words,status } = useAppSelector( state => state.words );
     const dispatch = useAppDispatch();
 
@@ -21,8 +22,8 @@ const WordList = ({ search,setSearch,input }:WordListProps) => {
     },[status,dispatch]);
 
     const getFilteredWords = (words:any,input:string) => {
-        if(input !== ""){
-            return words.filter( (word:any) => word.id.includes(input) )
+        if(search){
+            return input === "" ? [] : words.filter( (word:any) => word.word.id.includes(input) );
         }
         return words;
     }
@@ -30,14 +31,19 @@ const WordList = ({ search,setSearch,input }:WordListProps) => {
     const filteredWords = getFilteredWords(words,input);
     
     return (
-        <ul className="WordList">
-            { !search && <Word/> }
+        <div className="WordList">
             {
-                filteredWords.map((word:any) => (
-                    <Word key={word.id} word={word}/>
-                ))
+                status === "succeeded" && filteredWords.map((word:any) => (
+                    <Word key={word._id} word={word}/>
+                )).reverse()
             }
-        </ul>
+
+            { status === "succeeded" && filteredWords.length === 0 && <div className="no__results">No words found</div> }
+
+            {  status === "pending" && <Spinner/> }
+
+            <Error show={status === "failed"} message="something went wrong with server"/>
+        </div>
     );
 };
 
