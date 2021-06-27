@@ -23,7 +23,7 @@ const WordList = ({ search,input }:WordListProps) => {
 
     const getFilteredWords = (words:any,input:string) => {
         if(search){
-            return input === "" ? [] : words.filter( (word:any) => word.word.id.includes(input) );
+            return input === "" ? [] : words.filter( (word:any) => word.word.id.includes(input.toLowerCase()) );
         }
         return words;
     }
