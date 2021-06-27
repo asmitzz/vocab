@@ -1,9 +1,13 @@
 import { useState } from "react";
-import { LexicalEntries, Word as WordType } from "../../../features/words/words.types";
+import { LexicalEntries, WordType } from "../../../features/words/words.types";
 import Modal from "../../../utils/Modal/Modal";
 import WordDetails from "./WordDetails";
 
-const Word = ({word}:WordType) => {
+type WordProps = {
+  word:WordType;
+}
+
+const Word = ({word}:WordProps) => {
     const [fullscreen,setFullscreen] = useState<boolean>(false);
 
     return (

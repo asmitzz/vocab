@@ -2,6 +2,7 @@ import { unwrapResult } from "@reduxjs/toolkit";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useAppDispatch } from "../../app/hooks";
 import { addWord } from "../../features/words/wordsSlice";
+import { Status } from "../../generic.types";
 import { Success,Error } from "../../utils/Toast/Toast";
 import "./AddToDictionary.css";
 
@@ -12,7 +13,7 @@ type AddToDictionaryProps = {
 const AddToDictionary = ({ setBackdrop }:AddToDictionaryProps) => {
 
     const [word,setWord] = useState<string>(""); 
-    const [status,setStatus] = useState<string>("idle"); 
+    const [status,setStatus] = useState<Status>("idle"); 
     const dispatch = useAppDispatch();
 
     const handleAdd = async() => {

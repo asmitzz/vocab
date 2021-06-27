@@ -27,13 +27,15 @@ export type LexicalEntries = {
     entries:Entries[];
 } 
 
-export type Word = {
+export type WordType = {
     word:{
-        word:{
-            id:string;
-            lexicalEntries:LexicalEntries[];
-        }
+        id:string;
+        lexicalEntries:LexicalEntries[];
     }
+}
+
+export type Word = {
+    word:WordType;
 }
 
 export type WordsInitialState = {

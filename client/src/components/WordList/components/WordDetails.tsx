@@ -1,12 +1,19 @@
 import { nanoid } from "nanoid";
+import { Dispatch, SetStateAction } from "react";
 import {
   Examples,
   LexicalEntries,
   Senses,
   Subsenses,
+  WordType,
 } from "../../../features/words/words.types";
 
-const WordDetails = ({ setFullscreen, word }: any) => {
+type WordDetailsProps = {
+  setFullscreen:Dispatch<SetStateAction<boolean>>;
+  word:WordType;
+}
+
+const WordDetails = ({ setFullscreen, word }: WordDetailsProps) => {
   return (
     <div className="word__details">
       <button className="dismiss__btn" onClick={() => setFullscreen(false)}>
