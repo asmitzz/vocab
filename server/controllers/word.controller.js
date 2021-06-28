@@ -2,7 +2,7 @@ const Words = require("../models/word.model");
 const axios = require("axios");
 
 const getAllWords = async(req,res) => {
-    const words = await Words.find({}).lean();
+    const words = await Words.find({}).lean().select({ word:1 });
     res.status(200).json({ words })
 }
 
