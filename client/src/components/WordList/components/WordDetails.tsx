@@ -14,13 +14,14 @@ type WordDetailsProps = {
 }
 
 const WordDetails = ({ setFullscreen, word }: WordDetailsProps) => {
+  
   return (
     <div className="word__details">
       <button className="dismiss__btn" onClick={() => setFullscreen(false)}>
         X
       </button>
-      <h1 className="word__name">{word.word.id}</h1>
-      {word.word.lexicalEntries.map((entry: LexicalEntries, i: number) => {
+      <h1 className="word__name">{word.id}</h1>
+      {word.lexicalEntries.map((entry: LexicalEntries, i: number) => {
         return i === 0 ? (
           <div key={entry.lexicalCategory.id}>
             <div className="parts__of__speech">

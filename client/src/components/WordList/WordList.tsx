@@ -5,6 +5,7 @@ import { Error } from "../../utils/Toast/Toast";
 import Word from "./components/Word";
 import Spinner from "../../utils/Spinner/Spinner";
 import "./WordList.css";
+import { Word as Words } from "../../features/words/words.types";
 
 type WordListProps = {
     search:boolean;
@@ -21,9 +22,9 @@ const WordList = ({ search,input }:WordListProps) => {
         }
     },[status,dispatch]);
 
-    const getFilteredWords = (words:any,input:string) => {
+    const getFilteredWords = (words:Words[],input:string) => {
         if(search){
-            return input === "" ? [] : words.filter( (word:any) => word.word.id.includes(input.toLowerCase()) );
+            return input === "" ? [] : words.filter( (word) => word.word.id.includes(input.toLowerCase()) );
         }
         return words;
     }
@@ -33,8 +34,8 @@ const WordList = ({ search,input }:WordListProps) => {
     return (
         <div className="WordList">
             {
-                status === "succeeded" && filteredWords.map((word:any) => (
-                    <Word key={word._id} word={word}/>
+                status === "succeeded" && filteredWords.map((word) => (
+                    <Word key={word._id} word={word.word}/>
                 )).reverse()
             }
 

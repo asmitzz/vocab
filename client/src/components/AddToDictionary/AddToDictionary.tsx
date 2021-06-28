@@ -1,8 +1,9 @@
 import { unwrapResult } from "@reduxjs/toolkit";
 import { Dispatch, SetStateAction, useState } from "react";
-import { useAppDispatch } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { addWord } from "../../features/words/wordsSlice";
 import { Status } from "../../generic.types";
+import { checkWord } from "../../utils/functions/checkWord";
 import { Success,Error } from "../../utils/Toast/Toast";
 import "./AddToDictionary.css";
 
@@ -14,24 +15,31 @@ const AddToDictionary = ({ setBackdrop }:AddToDictionaryProps) => {
 
     const [word,setWord] = useState<string>(""); 
     const [status,setStatus] = useState<Status>("idle"); 
+    const [errMsg,setErrMsg] = useState<string>("");
     const dispatch = useAppDispatch();
-
+    const { words } = useAppSelector( state => state.words );
+ 
     const handleAdd = async() => {
         setStatus("pending")
         try {
-           if(status === "idle"){
+           if(status === "idle" && !checkWord(words,word) ){
              const result = await dispatch(addWord({word}));
              unwrapResult(result);
+             setStatus("succeeded");
+             setWord("");
+             setTimeout(() => {
+               setStatus("idle");
+             },2000)
+             return
            }
-           setStatus("succeeded");
-           setWord("");
-
+           setErrMsg("Word already added");
+           setStatus("failed");
            setTimeout(() => {
-             setStatus("idle");
-           },2000)
+            setStatus("idle");
+          },2000)
         } catch (error) {
-           setStatus("failed")
-
+           setStatus("failed");
+           setErrMsg("Word not found");
            setTimeout(() => {
              setStatus("idle");
            },2000)
@@ -51,7 +59,7 @@ const AddToDictionary = ({ setBackdrop }:AddToDictionaryProps) => {
             </div>
 
             <Success show={status === "succeeded"} message="Word added successfully"/>
-            <Error show={status === "failed"} message="Word not found"/>
+            <Error show={status === "failed"} message={ errMsg ? errMsg : "Word not found"}/>
         </div>
     );
 };

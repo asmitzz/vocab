@@ -17,9 +17,9 @@ const Word = ({word}:WordProps) => {
             </Modal>
 
             <div className="word__card" onClick={() => setFullscreen(true)}>
-               <h3 className="word__name">{word.word.id}</h3>
+               <h3 className="word__name">{word.id}</h3>
                { 
-                  word.word.lexicalEntries.map( (entry:LexicalEntries,i:number) => {
+                  word.lexicalEntries.map( (entry:LexicalEntries,i:number) => {
                       return i === 0 ? (
                         <div className="word__meaning" key={entry.lexicalCategory.id}>({entry.lexicalCategory.id}) {entry.entries[0].etymologies[0]}</div>
                       ) : (
