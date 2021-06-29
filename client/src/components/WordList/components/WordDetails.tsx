@@ -14,7 +14,11 @@ type WordDetailsProps = {
 }
 
 const WordDetails = ({ setFullscreen, word }: WordDetailsProps) => {
-  
+  const getMeaning = (entry:LexicalEntries) => {
+    if(entry.entries[0].etymologies){
+       return `Origin ${entry?.entries[0].etymologies[0]}`
+    }
+ }
   return (
     <div className="word__details">
       <button className="dismiss__btn" onClick={() => setFullscreen(false)}>
@@ -29,7 +33,7 @@ const WordDetails = ({ setFullscreen, word }: WordDetailsProps) => {
                 {entry.lexicalCategory.id}
               </h4>
               <p className="etymologies">
-                Origin {entry.entries[0].etymologies[0]}
+                 {getMeaning(entry)}
               </p>
               {entry.entries[0].senses.map((item: Senses) => (
                 <div key={nanoid()}>

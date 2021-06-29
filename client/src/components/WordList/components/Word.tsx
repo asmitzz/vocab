@@ -8,7 +8,16 @@ type WordProps = {
 }
 
 const Word = ({word}:WordProps) => {
+  console.log(word);
+  
     const [fullscreen,setFullscreen] = useState<boolean>(false);
+
+    const getMeaning = (entry:LexicalEntries) => {
+        if(entry.entries[0].etymologies){
+           return entry?.entries[0].etymologies[0]
+        }
+        return entry.entries[0].senses[0].definitions
+    }
 
     return (
         <div className="word">
@@ -21,7 +30,7 @@ const Word = ({word}:WordProps) => {
                { 
                   word.lexicalEntries.map( (entry:LexicalEntries,i:number) => {
                       return i === 0 ? (
-                        <div className="word__meaning" key={entry.lexicalCategory.id}>({entry.lexicalCategory.id}) {entry.entries[0].etymologies[0]}</div>
+                        <div className="word__meaning" key={entry.lexicalCategory.id}>({entry.lexicalCategory.id}) {getMeaning(entry)}</div>
                       ) : (
                       <div className="word__meaning" key={entry.lexicalCategory.id}>({entry.lexicalCategory.id}) {entry.entries[0].senses[0].definitions[0]}</div>
                     )
